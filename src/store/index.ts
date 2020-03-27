@@ -3,10 +3,10 @@ import { appReducer } from './reducers/appReducer';
 import { storage } from './middlewares/storage';
 import storageModule from 'store2';
 import { state } from './state';
-import { STORE_NAME } from '../utils';
+import { constants } from '../utils';
 
 // load app state from localStorage if it exists
-const preloadedState = (storageModule.has(STORE_NAME)) ? storageModule.get(STORE_NAME) : state;
+const preloadedState = (storageModule.has(constants.STORE_NAME)) ? storageModule.get(constants.STORE_NAME) : state;
 
 export const store = configureStore({
     reducer: {
