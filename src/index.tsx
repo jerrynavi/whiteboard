@@ -6,20 +6,36 @@ import { Provider } from 'react-redux';
 import './index.scss';
 import * as serviceWorker from './serviceWorker';
 import Progress from 'react-topbar-progress-indicator';
+import { ConfigProvider } from 'antd';
 
 const Home = lazy(() => import('./pages/home/Home'));
 const ErrorPage = lazy(() => import('./pages/error/ErrorPage'));
 
+
+function App(): JSX.Element {
+
+    return (
+        <>
+            <ConfigProvider
+                componentSize="large"
+            >
+                <Router>
+                    <Suspense fallback={<Progress />}>
+                        <Switch>
+                            <Route exact path="/" component={Home} />
+                            <Route path="*" component={ErrorPage} />
+                        </Switch>
+                    </Suspense>
+                </Router>
+            </ConfigProvider>
+        </>
+    );
+}
+
+
 ReactDOM.render(
     <Provider store={store}>
-        <Router>
-            <Suspense fallback={<Progress />}>
-                <Switch>
-                    <Route exact path="/" component={Home} />
-                    <Route path="*" component={ErrorPage} />
-                </Switch>
-            </Suspense>
-        </Router>
+        <App />
     </Provider>,
     document.getElementById('root')
 );

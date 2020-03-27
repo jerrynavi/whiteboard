@@ -9,7 +9,7 @@ module.exports = override(
     addLessLoader({
         javascriptEnabled: true,
         modifyVars: {
-            '@primary-color': '#da4453'
+            '@primary-color': '#708090',
         },
     }),
     useBabelRc()
