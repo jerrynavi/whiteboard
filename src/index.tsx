@@ -5,7 +5,6 @@ import { store } from './store';
 import { Provider } from 'react-redux';
 import './index.scss';
 import * as serviceWorker from './serviceWorker';
-import Footer from './components/footer/Footer';
 import Progress from 'react-topbar-progress-indicator';
 
 const Home = lazy(() => import('./pages/home/Home'));
@@ -21,7 +20,6 @@ ReactDOM.render(
                 </Switch>
             </Suspense>
         </Router>
-        <Footer />
     </Provider>,
     document.getElementById('root')
 );
