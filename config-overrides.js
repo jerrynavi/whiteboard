@@ -1,4 +1,20 @@
-const { useBabelRc, override, fixBabelImports, addLessLoader } = require('customize-cra');
+const {
+    useBabelRc,
+    override,
+    fixBabelImports,
+    addLessLoader,
+    addPostcssPlugins,
+} = require('customize-cra');
+
+const purgecss = require('@fullhuman/postcss-purgecss')({
+
+    content: [
+        './src/**/*.html',
+        './src/**/*.tsx',
+    ],
+
+    defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || [],
+});
 
 module.exports = override(
     fixBabelImports('import', {
@@ -12,5 +28,12 @@ module.exports = override(
             '@primary-color': '#708090',
         },
     }),
-    useBabelRc()
+    useBabelRc(),
+    addPostcssPlugins([
+        require('tailwindcss'),
+        require('autoprefixer'),
+        ...process.env.NODE_ENV === 'production'
+            ? [purgecss]
+            : [],
+    ]),
 );

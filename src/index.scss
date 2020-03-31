@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans|Lato&display=swap');
 
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
 :root {
     --primary-color: #708090;
     --primary-color-tint: #7e8d9b;
@@ -27,16 +31,4 @@ a {
     &:hover, &:focus {
         color: var(--primary-color-tint);
     }
-}
-
-.text-center {
-    text-align: center;
-}
-
-.padding {
-    padding: 1rem;
-}
-
-.no-margin {
-    margin: 0 !important;
 }

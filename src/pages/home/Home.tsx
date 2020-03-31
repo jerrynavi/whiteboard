@@ -13,18 +13,27 @@ const { Title, Text } = Typography;
 const appFeatures: {
     title: string;
     description: string;
+    imageSrc?: string;
 }[] = [
     {
         title: 'Draw or Doodle',
         description: 'Get creative or just have fun. Goof around or create a masterpiece. It\'s entirely up to you.',
+        imageSrc: '/assets/happy_moment.svg',
     },
     {
         title: 'Input Agnostic',
         description: 'Use a pen, your fingers or a mouse? No problem. Experience no limits with full support for all forms of input.',
+        imageSrc: '/assets/creativity.svg',
     },
     {
         title: 'Share and Download',
         description: 'You can export a PNG image to your computer or create a read-only, shareable link for others to access.',
+        imageSrc: '/assets/share_link.svg',
+    },
+    {
+        title: 'Collaborate',
+        description: 'Add a friend or a colleague and create in real-time.',
+        imageSrc: '/assets/collaborate.svg',
     },
 ];
 
@@ -70,7 +79,7 @@ class Home extends Component<HomeProps> {
                                         </div>
                                     </Col>
                                     <Col xs={{ span: 24 }} lg={{ span: 12 }}>
-                                        <div className={styles.image}>
+                                        <div className={styles.image + ' shadow-md p-4 text-center'}>
                                             <img src="/assets/character_drawing.svg" alt="character drawing" />
                                         </div>
                                     </Col>
@@ -102,7 +111,7 @@ class Home extends Component<HomeProps> {
                         <Row gutter={[12,24]}>
                             {appFeatures.map((feature, idx) => (
                                 <Col xs={{ span: 24 }} lg={{ span: 8 }} key={idx}>
-                                    <div className="text-center padding">
+                                    <div className="text-center">
                                         <Title level={3}>
                                             {feature.title}
                                         </Title>
