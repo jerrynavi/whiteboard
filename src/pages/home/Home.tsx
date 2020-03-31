@@ -33,7 +33,7 @@ const appFeatures: {
     {
         title: 'Collaborate',
         description: 'Add a friend or a colleague and create in real-time.',
-        imageSrc: '/assets/collaborate.svg',
+        imageSrc: '/assets/collaboration.svg',
     },
 ];
 
@@ -86,7 +86,7 @@ class Home extends Component<HomeProps> {
                                     <Col span={24}>
                                         <div className="text-center">
                                             <Link to="/login">
-                                                <Button type="primary" shape="round">
+                                                <Button type="primary" shape="round" className="hover:shadow-md">
                                                     Get started
                                                 </Button>
                                             </Link>
@@ -108,16 +108,21 @@ class Home extends Component<HomeProps> {
                             </Divider>
                         </div>
 
-                        <Row gutter={[12,24]}>
+                        <Row gutter={[12,24]} justify="center">
                             {appFeatures.map((feature, idx) => (
                                 <Col xs={{ span: 24 }} lg={{ span: 8 }} key={idx}>
-                                    <div className="text-center">
-                                        <Title level={3}>
-                                            {feature.title}
-                                        </Title>
-                                        <Text>
-                                            {feature.description}
-                                        </Text>
+                                    <div className={styles.feature}>
+                                        <div className="text-center p-8">
+                                            {(feature.imageSrc) && (
+                                                <img src={feature.imageSrc} alt={feature.title} />
+                                            )}
+                                            <Title level={3} className="my-4">
+                                                {feature.title}
+                                            </Title>
+                                            <Text className="my-1">
+                                                {feature.description}
+                                            </Text>
+                                        </div>
                                     </div>
                                 </Col>
                             ))}
