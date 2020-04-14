@@ -41,7 +41,7 @@ interface HomeProps extends RouteComponentProps {
     dispatch(args: AnyAction): void;
 }
 
-class Home extends Component<HomeProps> {
+class Home extends Component<Partial<HomeProps>> {
 
     render(): JSX.Element {
         return (
