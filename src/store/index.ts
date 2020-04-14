@@ -13,5 +13,5 @@ export const store = configureStore({
         app: appReducer,
     },
     middleware: [...getDefaultMiddleware(), storage],
-    preloadedState
+    preloadedState,
 });

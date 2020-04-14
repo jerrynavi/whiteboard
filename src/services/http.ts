@@ -53,7 +53,7 @@ export class Http {
      */
     public get = (path: string, params?: any): Promise<any> => {
         return this.httpClient.get(path, {
-            params
+            params,
         });
     }
 
@@ -62,7 +62,7 @@ export class Http {
      */
     public post = (path: string, data: any, params?: any): Promise<any> => {
         return this.httpClient.post(path, data, {
-            params
+            params,
         });
     }
 
@@ -71,7 +71,7 @@ export class Http {
      */
     public put = (path: string, data: any, params?: any): Promise<any> => {
         return this.httpClient.put(path, data, {
-            params
+            params,
         });
     }
 }
