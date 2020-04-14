@@ -1,5 +1,4 @@
 const {
-    useBabelRc,
     override,
     fixBabelImports,
     addLessLoader,
@@ -28,7 +27,6 @@ module.exports = override(
             '@primary-color': '#708090',
         },
     }),
-    useBabelRc(),
     addPostcssPlugins([
         require('tailwindcss'),
         require('autoprefixer'),

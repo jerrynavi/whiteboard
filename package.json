@@ -3,7 +3,6 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
-    "@babel/plugin-proposal-optional-chaining": "^7.9.0",
     "@reduxjs/toolkit": "^1.1.0",
     "antd": "^4.0.4",
     "axios": "^0.19.0",
@@ -64,6 +63,7 @@
     "enzyme-adapter-react-16": "^1.15.2",
     "eslint": "^6.8.0",
     "eslint-plugin-react": "^7.19.0",
+    "husky": "^4.2.5",
     "react-test-renderer": "^16.13.1"
   }
 }
