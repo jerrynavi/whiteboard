@@ -29,7 +29,15 @@
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
     "eject": "react-scripts eject",
-    "serve": "node server.js"
+    "serve": "node server.js",
+    "lint": "eslint --ext tsx,ts src",
+    "lint:fix": "eslint --ext tsx,ts src --fix"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "yarn run lint",
+      "pre-commit": "yarn run lint"
+    }
   },
   "eslintConfig": {
     "extends": "react-app"
