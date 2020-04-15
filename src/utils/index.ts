@@ -1,5 +1,9 @@
-import * as reducerActions from './reducerActions';
-import * as appConstants from './appConstants';
+import * as actions from './reducerActions';
+import * as constants from './appConstants';
+import * as messages from './appMessages';
 
-export const constants = appConstants;
-export const actions = reducerActions;
+export {
+    constants,
+    actions,
+    messages,
+};
