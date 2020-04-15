@@ -10,6 +10,7 @@ import { ConfigProvider } from 'antd';
 
 const Home = lazy(() => import('./pages/home/Home'));
 const ErrorPage = lazy(() => import('./pages/error/ErrorPage'));
+const Login = lazy(() => import('./pages/login/Login'));
 
 
 function App(): JSX.Element {
@@ -23,6 +24,8 @@ function App(): JSX.Element {
                     <Suspense fallback={<Progress />}>
                         <Switch>
                             <Route exact path="/" component={Home} />
+                            <Route path="/login" component={Login} />
+
                             <Route path="*" component={ErrorPage} />
                         </Switch>
                     </Suspense>

@@ -1,0 +1,14 @@
+.sidebar, .form {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    @media screen and (max-width: 768px) {
+        height: 100%;
+    }
+}
+
+.sidebar {
+    background: rgba(0,0,0,0.1);
+}
