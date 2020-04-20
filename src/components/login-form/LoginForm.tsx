@@ -1,34 +1,48 @@
 import React, { FC } from 'react';
-import { Form, message, Input, Button } from 'antd';
-import { messages } from '../../utils';
+import { Form, message, Input, Button, Checkbox, Typography } from 'antd';
+import { messages, toggleLoading, defaultFormProps } from '../../utils';
+import { connect } from 'react-redux';
+import { State } from '../../interfaces/state.interface';
 
 const { Item } = Form;
 const { Password } = Input;
+const { Text } = Typography;
 
 interface LoginData {
     username: string;
     password: string;
 }
 
-const LoginForm: FC = () => {
+interface Props {
+    loading: boolean;
+}
 
+const LoginForm: FC<Props> = (props) => {
+
+    const { loading } = props;
     const [form] = Form.useForm();
 
     const handleSubmit = async (): Promise<void> => {
         try {
-            const user = await form.validateFields() as LoginData;
+            toggleLoading();
+            const user = form.getFieldsValue();
             console.log(user);
         } catch (error) {
-            return message.warning(messages.FORM_VALIDATION_FAILED);
+            toggleLoading();
+            return message.warning(messages.REQUEST_FAILED_DEFAULT);
         }
+    };
+    
+    const handleSubmitFailed = (): void => {
+        message.warning(messages.FORM_VALIDATION_FAILED);
     };
 
     return (
         <Form
+            {...defaultFormProps}
             onFinish={handleSubmit}
-            layout="vertical"
-            hideRequiredMark
-            colon={false}
+            onFinishFailed={handleSubmitFailed}
+            form={form}
         >
             <Item
                 name="username"
@@ -57,14 +71,45 @@ const LoginForm: FC = () => {
                 <Password placeholder="Password" />
             </Item>
 
-            <Button
-                htmlType="submit"
-                type="primary"
+            <Item
+                style={{
+                    paddingLeft: '1rem',
+                    paddingRight: '1rem',
+                }}
             >
-                Login
-            </Button>
+                <Button
+                    htmlType="submit"
+                    type="primary"
+                    block
+                    loading={loading}
+                >
+                    Login
+                </Button>
+                <div className="flex flex-row justify-between py-4">
+                    <div>
+                        <Checkbox>
+                            Remember me
+                        </Checkbox>
+                    </div>
+                    <div>
+                        <Text
+                            type="secondary"
+                            className="cursor-pointer"
+                        >
+                            Forgot Password?
+                        </Text>
+                    </div>
+                </div>
+            </Item>
+
         </Form>
     );
 };
 
-export default LoginForm;
+const mappedProps = (state: State): { loading: boolean } => {
+    return {
+        loading: state.app.isLoading,
+    };
+};
+
+export default connect(mappedProps)(LoginForm);
