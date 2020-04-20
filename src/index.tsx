@@ -1,39 +1,10 @@
-import React, { Suspense, lazy } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { store } from './store';
 import { Provider } from 'react-redux';
 import './index.scss';
 import * as serviceWorker from './serviceWorker';
-import Progress from 'react-topbar-progress-indicator';
-import { ConfigProvider } from 'antd';
-
-const Home = lazy(() => import('./pages/home/Home'));
-const ErrorPage = lazy(() => import('./pages/error/ErrorPage'));
-const Login = lazy(() => import('./pages/login/Login'));
-
-
-function App(): JSX.Element {
-
-    return (
-        <>
-            <ConfigProvider
-                componentSize="large"
-            >
-                <Router>
-                    <Suspense fallback={<Progress />}>
-                        <Switch>
-                            <Route exact path="/" component={Home} />
-                            <Route path="/login" component={Login} />
-
-                            <Route path="*" component={ErrorPage} />
-                        </Switch>
-                    </Suspense>
-                </Router>
-            </ConfigProvider>
-        </>
-    );
-}
+import App from './App';
 
 
 ReactDOM.render(
