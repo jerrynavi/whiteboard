@@ -1,3 +1,7 @@
-export const state: any = {
-    app: null,
+import { State } from '../interfaces/state.interface';
+
+export const state: State = {
+    app: {
+        isLoading: false,
+    },
 };
