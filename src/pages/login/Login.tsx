@@ -37,7 +37,7 @@ const RenderLoginLink = (): JSX.Element => (
 );
 
 interface Props {
-    currentUrl: string;
+    currentUrl?: string;
 }
 
 export const Login: FC<Props> = (props) => {
