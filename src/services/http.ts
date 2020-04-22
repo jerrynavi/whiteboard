@@ -1,11 +1,11 @@
 import axios, { AxiosInstance, AxiosResponse } from 'axios';
-import { message } from 'antd';
+import { toggleLoading, showNotification } from '../utils';
 // import storageModule from 'store2';
 // import { STORE_NAME } from '../utils';
 
 export class Http {
     httpClient: AxiosInstance = axios.create({
-        baseURL: 'https://mocky.io/v2',
+        baseURL: 'https://api.whiteboard.dev',
         responseType: 'json',
     });
 
@@ -29,18 +29,25 @@ export class Http {
         });
 
         this.httpClient.interceptors.response.use(async (response: AxiosResponse): Promise<any> => {
-            if (response.status === 200) {
+            toggleLoading();
+            if (response.status >= 200 && response.status < 300) {
                 return response.data;
             }
         }, (error) => {
+            toggleLoading();
             if (error.response) {
                 if (error.response.status === 401) {
                     // redirect to login page
                 }
-                return message.error('error response from server');
+
+                showNotification('error', error.response.data.data.message ?? 'An error ocurred');
+
+                return null;
             } else if (error.request) {
                 // an error while sending the request
-                return message.error('No response from the server.');
+                showNotification('error', 'No response from the server.');
+
+                return null;
             } else {
                 console.log('Error', error.message);
             }
