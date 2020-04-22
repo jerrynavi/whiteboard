@@ -31,11 +31,12 @@
     "eject": "react-scripts eject",
     "serve": "node server.js",
     "lint": "eslint --ext tsx,ts src",
-    "lint:fix": "eslint --ext tsx,ts src --fix"
+    "lint:fix": "eslint --ext tsx,ts src --fix",
+    "pre-push": "yarn run lint && yarn run test --watchAll=false"
   },
   "husky": {
     "hooks": {
-      "pre-push": "yarn run lint",
+      "pre-push": "yarn run pre-push",
       "pre-commit": "yarn run lint"
     }
   },
@@ -72,6 +73,7 @@
     "eslint": "^6.8.0",
     "eslint-plugin-react": "^7.19.0",
     "husky": "^4.2.5",
+    "miragejs": "^0.1.37",
     "react-test-renderer": "^16.13.1"
   }
 }
