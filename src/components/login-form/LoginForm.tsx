@@ -1,35 +1,46 @@
 import React, { FC } from 'react';
 import { Form, message, Input, Button, Checkbox, Typography } from 'antd';
-import { messages, toggleLoading, defaultFormProps } from '../../utils';
+import { messages, toggleLoading, defaultFormProps, actions, showNotification } from '../../utils';
 import { connect } from 'react-redux';
 import { State } from '../../interfaces/state.interface';
+import { User } from '../../interfaces/user.interface';
+import { UserService } from '../../services/user';
+import { AnyAction } from '@reduxjs/toolkit';
 
 const { Item } = Form;
 const { Password } = Input;
 const { Text } = Typography;
 
-interface LoginData {
-    username: string;
-    password: string;
-}
-
 interface Props {
     loading: boolean;
+    dispatch(action: AnyAction): void;
 }
 
 const LoginForm: FC<Props> = (props) => {
 
     const { loading } = props;
+    const userService = new UserService();
     const [form] = Form.useForm();
 
-    const handleSubmit = async (): Promise<void> => {
+    const handleSubmit = (): void => {
         try {
             toggleLoading();
-            const user = form.getFieldsValue();
-            console.log(user);
+            const user = form.getFieldsValue() as Pick<User, 'username' | 'password'>;
+            userService.login(user).then((res) => {
+                if (res) {
+                    props.dispatch({
+                        type: actions.SAVE_USER_DATA,
+                        payload: res,
+                    });
+                    props.dispatch({
+                        type: actions.TOGGLE_AUTH_STATE,
+                    });
+                    showNotification('success', 'Logged in successfully.');
+                }
+            });
         } catch (error) {
             toggleLoading();
-            return message.warning(messages.REQUEST_FAILED_DEFAULT);
+            message.warning(messages.REQUEST_FAILED_DEFAULT);
         }
     };
     
