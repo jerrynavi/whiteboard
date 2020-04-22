@@ -8,7 +8,11 @@ export const appReducer = createReducer(state.app, {
     UPDATE_CURRENT_URL: (app, { payload }) => {
         app.currentUrl = payload;
     },
+    TOGGLE_AUTH_STATE: (app) => {
+        app.isLoggedIn = false;
+    },
 });
 
 createAction('TOGGLE_LOADING');
 createAction('UPDATE_CURRENT_URL');
+createAction('TOGGLE_AUTH_STATE');

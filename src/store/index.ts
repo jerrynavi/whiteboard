@@ -4,6 +4,7 @@ import { storage } from './middlewares/storage';
 import storageModule from 'store2';
 import { state } from './state';
 import { constants } from '../utils';
+import { userReducer } from './reducers/userReducer';
 
 // load app state from localStorage if it exists
 const preloadedState = (storageModule.has(constants.STORE_NAME)) ? storageModule.get(constants.STORE_NAME) : state;
@@ -11,6 +12,7 @@ const preloadedState = (storageModule.has(constants.STORE_NAME)) ? storageModule
 export const store = configureStore({
     reducer: {
         app: appReducer,
+        user: userReducer,
     },
     middleware: [...getDefaultMiddleware(), storage],
     preloadedState,

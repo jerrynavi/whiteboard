@@ -4,5 +4,7 @@ export const state: State = {
     app: {
         isLoading: false,
         currentUrl: '/',
+        isLoggedIn: false,
     },
+    user: null,
 };
