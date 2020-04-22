@@ -5,7 +5,13 @@ import { Provider } from 'react-redux';
 import './index.scss';
 import * as serviceWorker from './serviceWorker';
 import App from './App';
+import { setupServer } from './services/mirage/server';
 
+if (process.env.NODE_ENV === 'development') {
+    setupServer({
+        env: 'development',
+    });
+}
 
 ReactDOM.render(
     <Provider store={store}>
