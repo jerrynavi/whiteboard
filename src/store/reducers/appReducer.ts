@@ -9,7 +9,7 @@ export const appReducer = createReducer(state.app, {
         app.currentUrl = payload;
     },
     TOGGLE_AUTH_STATE: (app) => {
-        app.isLoggedIn = false;
+        app.isLoggedIn = !app.isLoggedIn;
     },
 });
 
