@@ -6,6 +6,7 @@ import { State } from '../../interfaces/state.interface';
 import { User } from '../../interfaces/user.interface';
 import { UserService } from '../../services/user';
 import { AnyAction } from '@reduxjs/toolkit';
+import { useHistory } from 'react-router-dom';
 
 const { Item } = Form;
 const { Password } = Input;
@@ -21,6 +22,7 @@ const LoginForm: FC<Props> = (props) => {
     const { loading } = props;
     const userService = new UserService();
     const [form] = Form.useForm();
+    const history = useHistory();
 
     const handleSubmit = (): void => {
         try {
@@ -36,6 +38,7 @@ const LoginForm: FC<Props> = (props) => {
                         type: actions.TOGGLE_AUTH_STATE,
                     });
                     showNotification('success', 'Logged in successfully.');
+                    history.push('/dashboard');
                 }
             });
         } catch (error) {

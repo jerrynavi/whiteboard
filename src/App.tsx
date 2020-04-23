@@ -7,6 +7,8 @@ import { actions } from './utils';
 
 const Home = lazy(() => import('./pages/home/Home'));
 const Login = lazy(() => import('./pages/login/Login'));
+const Dashboard = lazy(() => import('./pages/dashboard/Dashboard'));
+
 const ErrorPage = lazy(() => import('./pages/error/ErrorPage'));
 
 const useLocationChanges = (): void => {
@@ -32,6 +34,7 @@ const Routes: FC = () => {
             <Switch>
                 <Route exact path="/" component={Home} />
                 <Route path={['/login', '/login?action=signup']} component={Login} />
+                <Route path="/dashboard" component={Dashboard} />
 
                 <Route path="*" component={ErrorPage} />
             </Switch>

@@ -6,6 +6,7 @@ import { defaultFormProps, toggleLoading, actions, showNotification } from '../.
 import { UserService } from '../../services/user';
 import { User } from '../../interfaces/user.interface';
 import { AnyAction } from '@reduxjs/toolkit';
+import { useHistory } from 'react-router-dom';
 
 const { Item } = Form;
 const { Password } = Input;
@@ -20,6 +21,7 @@ const SignupForm: FC<Props> = (props) => {
     const { loading } = props;
     const userService = new UserService();
     const [form] = Form.useForm();
+    const history = useHistory();
 
     const handleSubmit = (): void => {
         try {
@@ -35,6 +37,7 @@ const SignupForm: FC<Props> = (props) => {
                         type: actions.TOGGLE_AUTH_STATE,
                     });
                     showNotification('success', 'Account created successfully');
+                    history.push('/dashboard');
                 }
             });
         } catch (error) {
