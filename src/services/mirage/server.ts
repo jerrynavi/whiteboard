@@ -1,4 +1,4 @@
-import { Server, Model } from 'miragejs';
+import { Server, Model, Factory } from 'miragejs';
 import user from './routes/user';
 
 export const errorResponse = (message = 'An error ocurred'): {
@@ -19,11 +19,22 @@ export const setupServer = (opts: { env: string }): Server => {
     return new Server({
         environment: env ?? 'test',
 
-        
         models: {
             user: Model,
         },
-        
+
+        factories: {
+            user: Factory.extend({
+                username: 'test',
+                password: 'password',
+                email: 'test@domain.com',
+            }),
+        },
+
+        seeds: (server): any => {
+            server.create('user');
+        },
+
         routes(): void {
             this.urlPrefix = 'https://api.whiteboard.dev';
 
