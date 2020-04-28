@@ -8,6 +8,7 @@ import { actions } from './utils';
 const Home = lazy(() => import('./pages/home/Home'));
 const Login = lazy(() => import('./pages/login/Login'));
 const Dashboard = lazy(() => import('./pages/dashboard/Dashboard'));
+const Editor = lazy(() => import('./pages/editor/Editor'));
 
 const ErrorPage = lazy(() => import('./pages/error/ErrorPage'));
 
@@ -35,6 +36,7 @@ const Routes: FC = () => {
                 <Route exact path="/" component={Home} />
                 <Route path={['/login', '/login?action=signup']} component={Login} />
                 <Route path="/dashboard" component={Dashboard} />
+                <Route path="/editor" component={Editor} />
 
                 <Route path="*" component={ErrorPage} />
             </Switch>
