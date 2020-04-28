@@ -32,3 +32,7 @@ a {
         color: var(--primary-color-tint);
     }
 }
+
+.ant-btn-icon-only {
+    line-height: 1 !important; // fix for icon buttons
+}
