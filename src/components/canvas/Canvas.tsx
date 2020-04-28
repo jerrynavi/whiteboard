@@ -173,7 +173,6 @@ const Canvas: FC = () => {
                     >
                         <Search
                             defaultValue={filename}
-                            size="small"
                             onSearch={(value): void => {
                                 showNotification('success', messages.SAVE_SUCCESS);
                                 setFilename(value);
