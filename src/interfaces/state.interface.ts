@@ -1,4 +1,5 @@
 import { User } from './user.interface';
+import { Board } from './board.interface';
 
 export interface State {
     app: {
@@ -8,4 +9,10 @@ export interface State {
     };
 
     user: User | null;
+
+    activeBoard: {
+        board: Board;
+        belongsTo?: number;
+        collaborators?: User[];
+    } | null;
 }
